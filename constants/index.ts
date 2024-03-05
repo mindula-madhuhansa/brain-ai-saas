@@ -131,3 +131,6 @@ export const resolutionOptions = [
     label: "1024x1024",
   },
 ];
+
+// Max Free Counts
+export const MAX_FREE_COUNTS = 5;

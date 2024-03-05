@@ -1,8 +1,5 @@
+import { EmptyProps } from "@/typings";
 import Image from "next/image";
-
-interface EmptyProps {
-  label: string;
-}
 
 function Empty({ label }: EmptyProps) {
   return (

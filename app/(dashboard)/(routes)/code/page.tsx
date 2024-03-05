@@ -18,6 +18,7 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BrainAvatar from "@/components/BrainAvatar";
+import { ChatCompletionRequestMessage } from "@/typings";
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -110,7 +111,7 @@ function CodePage() {
           )}
           {messages.length === 0 && !isLoading && (
             <div>
-              <Empty label="No coversation started" />
+              <Empty label="No coversation started." />
             </div>
           )}
           <div className="flex flex-col-reverse gap-y-4">

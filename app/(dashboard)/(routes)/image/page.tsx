@@ -24,6 +24,7 @@ import {
 } from "@/components/ui/select";
 import { amountOptions, resolutionOptions } from "@/constants";
 import { Card, CardFooter } from "@/components/ui/card";
+import { useProModal } from "@/hooks/useProModal";
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -34,6 +35,7 @@ const formSchema = z.object({
 });
 
 function ImagePage() {
+  const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
 
@@ -60,8 +62,9 @@ function ImagePage() {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      if (error?.response.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
@@ -170,7 +173,7 @@ function ImagePage() {
           )}
           {images.length === 0 && !isLoading && (
             <div>
-              <Empty label="No images generated" />
+              <Empty label="No images generated." />
             </div>
           )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 mt-8">

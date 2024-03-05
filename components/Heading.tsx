@@ -1,14 +1,5 @@
-import { LucideIcon } from "lucide-react";
-
 import { cn } from "@/lib/utils";
-
-interface HeadingProps {
-  title: string;
-  decription: string;
-  icon: LucideIcon;
-  iconColor?: string;
-  bgColor?: string;
-}
+import { HeadingProps } from "@/typings";
 
 function Heading({
   title,

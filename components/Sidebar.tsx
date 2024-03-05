@@ -7,10 +7,12 @@ import { Montserrat } from "next/font/google";
 
 import { cn } from "@/lib/utils";
 import { routes } from "@/constants";
+import FreeCounter from "./FreeCounter";
+import { APILimitCountProps } from "@/typings";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
-function Sidebar() {
+function Sidebar({ apiLimitCount = 0 }: APILimitCountProps) {
   const pathname = usePathname();
   return (
     <div className="flex flex-col space-y-4 py-4 h-full bg-[#111827] text-white">
@@ -44,6 +46,8 @@ function Sidebar() {
           ))}
         </div>
       </div>
+
+      <FreeCounter apiLimitCount={apiLimitCount} />
     </div>
   );
 }

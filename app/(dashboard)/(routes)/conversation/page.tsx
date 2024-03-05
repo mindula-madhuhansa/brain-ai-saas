@@ -17,6 +17,8 @@ import Loader from "@/components/Loader";
 import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BrainAvatar from "@/components/BrainAvatar";
+import { ChatCompletionRequestMessage } from "@/typings";
+import { useProModal } from "@/hooks/useProModal";
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -25,6 +27,7 @@ const formSchema = z.object({
 });
 
 function ConversationPage() {
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -53,8 +56,9 @@ function ConversationPage() {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      if (error?.response.status === 403) {
+        proModal.onOpen();
+      }
     } finally {
       router.refresh();
     }
@@ -109,7 +113,7 @@ function ConversationPage() {
           )}
           {messages.length === 0 && !isLoading && (
             <div>
-              <Empty label="No coversation started" />
+              <Empty label="No coversation started." />
             </div>
           )}
           <div className="flex flex-col-reverse gap-y-4">
