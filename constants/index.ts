@@ -7,7 +7,6 @@ import {
   LayoutDashboard,
   Settings,
 } from "lucide-react";
-import * as z from "zod";
 
 // Routes
 export const routes = [
@@ -134,3 +133,46 @@ export const resolutionOptions = [
 
 // Max Free Counts
 export const MAX_FREE_COUNTS = 5;
+
+// Features
+export const features = [
+  {
+    title: "Chatbot",
+    icon: MessageSquare,
+    description: "Chat with our most advanced conversation model.",
+    color: "text-violet-500",
+    bgColor: "bg-violet-500/10",
+  },
+  {
+    title: "Code Generation",
+    icon: Code,
+    description:
+      "Generate code snippets in your preferred programming languages.",
+    color: "text-green-700",
+    bgColor: "bg-green-700/10",
+  },
+  {
+    title: "Image Generation",
+    icon: Image,
+    description:
+      "Our image-generating model can generate images based on your prompt.",
+    color: "text-pink-700",
+    bgColor: "bg-pink-700/10",
+  },
+  {
+    title: "Music Generation",
+    icon: Music,
+    description:
+      "Our music-generating model can generate music based on your prompt.",
+    color: "text-emerald-500",
+    bgColor: "bg-emerald-500/10",
+  },
+  {
+    title: "Video Generation",
+    icon: Video,
+    description:
+      "Our video-generating model can generate video based on your prompt.",
+    color: "text-orange-700",
+    bgColor: "bg-orange-700/10",
+  },
+];

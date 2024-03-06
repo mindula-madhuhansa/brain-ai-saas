@@ -25,6 +25,7 @@ import {
 import { amountOptions, resolutionOptions } from "@/constants";
 import { Card, CardFooter } from "@/components/ui/card";
 import { useProModal } from "@/hooks/useProModal";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -35,6 +36,7 @@ const formSchema = z.object({
 });
 
 function ImagePage() {
+  const { toast } = useToast();
   const proModal = useProModal();
   const router = useRouter();
   const [images, setImages] = useState<string[]>([]);
@@ -62,8 +64,13 @@ function ImagePage() {
 
       form.reset();
     } catch (error: any) {
-      if (error?.response.status === 403) {
+      if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast({
+          variant: "destructive",
+          description: "Something went wrong.",
+        });
       }
     } finally {
       router.refresh();

@@ -8,12 +8,13 @@ import { Montserrat } from "next/font/google";
 import { cn } from "@/lib/utils";
 import { routes } from "@/constants";
 import FreeCounter from "./FreeCounter";
-import { APILimitCountProps } from "@/typings";
+import { FreeCounterProps } from "@/typings";
 
 const montserrat = Montserrat({ weight: "600", subsets: ["latin"] });
 
-function Sidebar({ apiLimitCount = 0 }: APILimitCountProps) {
+function Sidebar({ apiLimitCount = 0, isPro = false }: FreeCounterProps) {
   const pathname = usePathname();
+
   return (
     <div className="flex flex-col space-y-4 py-4 h-full bg-[#111827] text-white">
       <div className="px-3 py-2 flex-1">
@@ -47,7 +48,7 @@ function Sidebar({ apiLimitCount = 0 }: APILimitCountProps) {
         </div>
       </div>
 
-      <FreeCounter apiLimitCount={apiLimitCount} />
+      <FreeCounter apiLimitCount={apiLimitCount} isPro={isPro} />
     </div>
   );
 }

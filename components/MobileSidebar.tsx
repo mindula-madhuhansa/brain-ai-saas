@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import Sidebar from "@/components/Sidebar";
 import { useEffect, useState } from "react";
-import { APILimitCountProps } from "@/typings";
+import { FreeCounterProps } from "@/typings";
 
-function MobileSidebar({ apiLimitCount }: APILimitCountProps) {
+function MobileSidebar({ apiLimitCount = 0, isPro = false }: FreeCounterProps) {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ function MobileSidebar({ apiLimitCount }: APILimitCountProps) {
         </Button>
       </SheetTrigger>
       <SheetContent side="left" className="p-0">
-        <Sidebar apiLimitCount={apiLimitCount} />
+        <Sidebar apiLimitCount={apiLimitCount} isPro={isPro} />
       </SheetContent>
     </Sheet>
   );

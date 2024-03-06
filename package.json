@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.29.9",
@@ -18,9 +19,11 @@
     "@radix-ui/react-progress": "^1.0.3",
     "@radix-ui/react-select": "^2.0.0",
     "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
     "axios": "^1.6.7",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
+    "crisp-sdk-web": "^1.0.22",
     "lucide-react": "^0.344.0",
     "next": "14.1.1",
     "openai": "^4.28.4",
@@ -29,8 +32,10 @@
     "react-hook-form": "^7.51.0",
     "react-markdown": "^9.0.1",
     "replicate": "^0.27.1",
+    "stripe": "^14.19.0",
     "tailwind-merge": "^2.2.1",
     "tailwindcss-animate": "^1.0.7",
+    "typewriter-effect": "^2.21.0",
     "zod": "^3.22.4",
     "zustand": "^4.5.2"
   },

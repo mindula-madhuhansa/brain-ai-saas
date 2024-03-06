@@ -18,12 +18,17 @@ interface HeadingProps {
   bgColor?: string;
 }
 
-interface APILimitCountProps {
+interface FreeCounterProps {
   apiLimitCount: number;
+  isPro: boolean;
 }
 
 interface UseProModal {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
+}
+
+interface SubscriptionButtonProps {
+  isPro: boolean;
 }

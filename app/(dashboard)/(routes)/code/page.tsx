@@ -19,6 +19,8 @@ import { cn } from "@/lib/utils";
 import UserAvatar from "@/components/UserAvatar";
 import BrainAvatar from "@/components/BrainAvatar";
 import { ChatCompletionRequestMessage } from "@/typings";
+import { useToast } from "@/components/ui/use-toast";
+import { useProModal } from "@/hooks/useProModal";
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -27,6 +29,8 @@ const formSchema = z.object({
 });
 
 function CodePage() {
+  const { toast } = useToast();
+  const proModal = useProModal();
   const router = useRouter();
   const [messages, setMessages] = useState<ChatCompletionRequestMessage[]>([]);
 
@@ -55,8 +59,14 @@ function CodePage() {
 
       form.reset();
     } catch (error: any) {
-      // TODO: Open Pro Modal
-      console.log(error);
+      if (error?.response?.status === 403) {
+        proModal.onOpen();
+      } else {
+        toast({
+          variant: "destructive",
+          description: "Something went wrong.",
+        });
+      }
     } finally {
       router.refresh();
     }

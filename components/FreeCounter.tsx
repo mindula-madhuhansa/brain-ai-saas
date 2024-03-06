@@ -8,9 +8,9 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Button } from "@/components/ui/button";
 import { useProModal } from "@/hooks/useProModal";
-import { APILimitCountProps } from "@/typings";
+import { FreeCounterProps } from "@/typings";
 
-function FreeCounter({ apiLimitCount = 0 }: APILimitCountProps) {
+function FreeCounter({ apiLimitCount = 0, isPro = false }: FreeCounterProps) {
   const proModal = useProModal();
   const [mounted, setMounted] = useState(false);
 
@@ -21,6 +21,11 @@ function FreeCounter({ apiLimitCount = 0 }: APILimitCountProps) {
   if (!mounted) {
     return null;
   }
+
+  if (isPro) {
+    return null;
+  }
+
   return (
     <div className="px-3">
       <Card className="bg-white/10 border-0">

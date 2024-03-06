@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import Empty from "@/components/Empty";
 import Loader from "@/components/Loader";
 import { useProModal } from "@/hooks/useProModal";
+import { useToast } from "@/components/ui/use-toast";
 
 const formSchema = z.object({
   prompt: z.string().min(1, {
@@ -23,6 +24,7 @@ const formSchema = z.object({
 });
 
 function VideoPage() {
+  const { toast } = useToast();
   const proModal = useProModal();
   const router = useRouter();
   const [video, setVideo] = useState<string>();
@@ -46,8 +48,13 @@ function VideoPage() {
 
       form.reset();
     } catch (error: any) {
-      if (error?.response.status === 403) {
+      if (error?.response?.status === 403) {
         proModal.onOpen();
+      } else {
+        toast({
+          variant: "destructive",
+          description: "Something went wrong.",
+        });
       }
     } finally {
       router.refresh();
